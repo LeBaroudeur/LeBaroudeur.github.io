@@ -77,10 +77,23 @@ npm run dev:client     # Vite only,    http://localhost:5173
 
 ---
 
-## Deployment notes
-- **Frontend** → build with `npm run build` (outputs `client/dist/`) and host on Vercel/Netlify/GitHub Pages. Set `VITE_API_URL` to your API origin.
-- **Backend** → deploy `server/` to Render/Railway/Fly.io with `MONGO_URI` (MongoDB Atlas) and `CLIENT_ORIGIN` set to your frontend URL.
-- Even hosted purely static (no backend), the site renders fully from `fallback.js`.
+## Deployment
+
+**Live at [mehdi-msallem.me](https://mehdi-msallem.me)** — hosted on GitHub Pages.
+
+- The `main` branch holds the source; the built site is published to the `gh-pages`
+  branch, which GitHub Pages serves (custom domain via `client/public/CNAME`).
+- **Redeploy after any change** with one command:
+  ```bash
+  npm run deploy        # builds client/ and force-pushes client/dist to gh-pages
+  ```
+- The contact form falls back to a `mailto:` when no backend API is reachable, so the
+  static deploy is fully functional; with the backend live it posts to MongoDB instead.
+
+### Optional: live backend
+Deploy `server/` to Render/Railway/Fly.io with `MONGO_URI` (MongoDB Atlas) and
+`CLIENT_ORIGIN`, then set `VITE_API_URL` in `client/.env` to the API origin and redeploy.
+The navbar badge will switch to `API: live`.
 
 ---
 
@@ -96,7 +109,4 @@ Projects can carry either a `repo` (external link, opens in a new tab) **or** a
 The three academic projects (`predictive-cti`, `mesalin`, `odc-attendance`) use
 reports; the rest link to GitHub.
 
-To-do before publishing:
-- [ ] Confirm the LinkedIn URL (currently `linkedin.com/in/mehdi-msallem`).
-- [ ] Create the GitHub repos linked in the code-backed project cards:
-      `llm-redteam-agent`, `darkweb-cti`, `kerberos-sso`, `vuln-scanner`, `mern-portfolio`.
+Note: confirm the LinkedIn URL in the data files (currently `linkedin.com/in/mehdi-msallem`).
