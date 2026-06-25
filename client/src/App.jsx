@@ -1,5 +1,8 @@
 import { usePortfolio } from './hooks/usePortfolio.js';
 import MatrixCanvas from './components/MatrixCanvas.jsx';
+import CursorGlow from './components/CursorGlow.jsx';
+import ScrollProgress from './components/ScrollProgress.jsx';
+import SideRails from './components/SideRails.jsx';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
@@ -16,6 +19,9 @@ export default function App() {
   return (
     <>
       <MatrixCanvas />
+      <CursorGlow />
+      <ScrollProgress />
+      <SideRails profile={profile} />
       <Navbar live={live} />
       <main>
         <Hero profile={profile} />

@@ -43,7 +43,7 @@ export default function Hero({ profile }) {
         </div>
         <div className="term-body">
           <p><span className="prompt">$</span> whoami</p>
-          <h1>{profile.name}</h1>
+          <h1 className="glitch" data-text={profile.name}>{profile.name}</h1>
           <p className="role"><span className="prompt">$</span> cat role.txt</p>
           <p className="typed"><span>{typed}</span><span className="cursor">▋</span></p>
           <p className="meta"><span className="prompt">$</span> {t.hero.availabilityCmd}</p>

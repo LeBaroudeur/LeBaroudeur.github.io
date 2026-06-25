@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Reveal from './Reveal.jsx';
 import PdfModal from './PdfModal.jsx';
 import { useLang } from '../i18n/LanguageContext.jsx';
+import { onCardMove, onCardLeave } from '../utils/cardFx.js';
 
 // "Blog" of technical reports: every project carrying a PDF `report` becomes a
 // readable + downloadable entry.
@@ -20,7 +21,7 @@ export default function Blog({ projects }) {
 
         <div className="blog-list">
           {posts.map((p) => (
-            <article className="post" key={p.slug}>
+            <article className="post" key={p.slug} onMouseMove={onCardMove} onMouseLeave={onCardLeave}>
               <div className="post-main">
                 <div className="post-meta">
                   <span className="post-type">{t.blog.pdf}</span>

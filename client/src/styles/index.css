@@ -18,7 +18,7 @@ main,header,footer{position:relative;z-index:1}
 /* top bar */
 .topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
   padding:.85rem 1.5rem;background:rgba(10,14,20,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.brand{font-family:var(--mono);color:var(--brand);font-weight:600;letter-spacing:.5px}
+.brand{font-family:var(--mono);color:var(--brand);font-weight:600;letter-spacing:.5px;white-space:nowrap}
 .topbar nav{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center}
 .topbar nav a{font-family:var(--mono);font-size:.9rem;color:var(--muted);text-decoration:none;transition:color .2s}
 .topbar nav a:hover{color:var(--brand)}
@@ -161,4 +161,118 @@ footer{max-width:900px;margin:2rem auto 0;padding:1.6rem 1.5rem;display:flex;jus
   .term-body h1{font-size:1.9rem}
   .topbar nav{gap:.9rem}
   footer{flex-direction:column;gap:.6rem}
+}
+
+/* ============================================================
+   AESTHETIC + INTERACTIVE ENHANCEMENTS
+   ============================================================ */
+
+/* --- cursor-following glow (desktop) --- */
+.cursor-glow{
+  position:fixed;top:0;left:0;width:440px;height:440px;border-radius:50%;
+  pointer-events:none;z-index:0;opacity:0;transition:opacity .4s;will-change:transform;
+  background:radial-gradient(circle, rgba(255,51,68,.10), transparent 60%);
+}
+
+/* --- scroll progress bar --- */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:3px;z-index:60;border-radius:0 2px 2px 0;
+  background:linear-gradient(90deg,var(--brand),#ff8a96);
+  box-shadow:0 0 10px rgba(255,51,68,.7);
+}
+
+/* --- faint scanline texture --- */
+body::after{
+  content:"";position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.45;
+  background:repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 3px);
+}
+
+/* --- side rails --- */
+.rail{position:fixed;bottom:0;z-index:30;display:flex;flex-direction:column;align-items:center}
+.rail.left{left:26px}
+.rail.right{right:26px}
+.rail.left ul{list-style:none;display:flex;flex-direction:column;gap:15px;margin:0;padding:0 0 26px}
+.rail.left::after,.rail.right::after{content:"";width:1px;height:80px;background:linear-gradient(var(--border),transparent)}
+.rail.right::after{margin-top:14px}
+.dot-nav{position:relative;display:flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;padding:0}
+.dot-nav::before{content:"";width:10px;height:10px;border-radius:50%;border:1px solid var(--muted);transition:.25s}
+.dot-nav:hover::before{border-color:var(--brand)}
+.dot-nav.active::before{background:var(--brand);border-color:var(--brand);box-shadow:0 0 12px var(--brand);transform:scale(1.2)}
+.dot-label{font-family:var(--mono);font-size:.72rem;color:var(--muted);opacity:0;transform:translateX(-6px);transition:.25s;white-space:nowrap}
+.dot-nav:hover .dot-label,.dot-nav.active .dot-label{opacity:1;transform:none;color:var(--brand)}
+.email-vert{writing-mode:vertical-rl;font-family:var(--mono);font-size:.78rem;letter-spacing:1.5px;color:var(--muted);text-decoration:none;transition:.25s}
+.email-vert:hover{color:var(--brand);transform:translateY(-5px)}
+@media(max-width:1100px){.rail{display:none}}
+
+/* --- hero ambient glow orb --- */
+.hero{position:relative}
+.hero::before{
+  content:"";position:absolute;top:-40px;left:50%;width:520px;height:520px;max-width:90vw;
+  transform:translateX(-50%);border-radius:50%;z-index:-1;pointer-events:none;filter:blur(34px);
+  background:radial-gradient(circle, rgba(255,51,68,.13), transparent 62%);
+  animation:floaty 9s ease-in-out infinite;
+}
+@keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(26px)}}
+
+/* --- glitch on the name (hover) --- */
+.term-body h1.glitch{cursor:default}
+.term-body h1.glitch:hover{animation:glitch .42s steps(2) 2}
+@keyframes glitch{
+  0%{text-shadow:none;transform:translate(0)}
+  20%{text-shadow:-2px 0 var(--brand),2px 0 #19e6ff;transform:translate(1px,-1px)}
+  40%{text-shadow:2px 0 var(--brand),-2px 0 #19e6ff;transform:translate(-1px,1px)}
+  60%{text-shadow:-1px 0 #19e6ff,1px 0 var(--brand);transform:translate(1px,0)}
+  80%{text-shadow:1px 0 var(--brand),-1px 0 #19e6ff;transform:translate(0,1px)}
+  100%{text-shadow:none;transform:none}
+}
+
+/* --- animated underline on section headings --- */
+.block h2{position:relative;display:inline-block}
+.block h2::after{content:"";position:absolute;left:0;bottom:-7px;height:2px;width:0;
+  background:linear-gradient(90deg,var(--brand),transparent);transition:width .7s ease .15s}
+.reveal.in h2::after{width:100%}
+
+/* --- button shine sweep --- */
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-150%;width:70%;height:100%;pointer-events:none;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.22),transparent);
+  transform:skewX(-20deg);transition:left .6s ease}
+.btn:hover::after{left:165%}
+
+/* --- card tilt + cursor spotlight (projects, skills, blog) --- */
+.proj,.skill-card,.post{
+  transform:perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg)) translateY(var(--lift,0));
+  transition:transform .16s ease, opacity .5s ease, border-color .25s, box-shadow .25s;
+  transform-style:preserve-3d;
+}
+.skill-card,.post{position:relative;overflow:hidden}
+.proj:hover,.skill-card:hover,.post:hover{
+  --lift:-6px;
+  transform:perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg)) translateY(var(--lift));
+}
+.proj::after,.skill-card::after,.post::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(255,51,68,.16), transparent 55%);
+}
+.proj:hover::after,.skill-card:hover::after,.post:hover::after{opacity:1}
+
+/* --- staggered card entrance --- */
+.reveal.in .proj,.reveal.in .skill-card,.reveal.in .post{animation:cardIn .55s ease backwards}
+.reveal.in .proj:nth-child(2),.reveal.in .skill-card:nth-child(2),.reveal.in .post:nth-child(2){animation-delay:.06s}
+.reveal.in .proj:nth-child(3),.reveal.in .skill-card:nth-child(3),.reveal.in .post:nth-child(3){animation-delay:.12s}
+.reveal.in .proj:nth-child(4),.reveal.in .skill-card:nth-child(4),.reveal.in .post:nth-child(4){animation-delay:.18s}
+.reveal.in .proj:nth-child(5),.reveal.in .skill-card:nth-child(5){animation-delay:.24s}
+.reveal.in .proj:nth-child(6),.reveal.in .skill-card:nth-child(6){animation-delay:.30s}
+.reveal.in .proj:nth-child(7){animation-delay:.36s}
+.reveal.in .proj:nth-child(8){animation-delay:.42s}
+@keyframes cardIn{from{opacity:0}to{opacity:1}}
+
+/* --- timeline dot pulse --- */
+.tl-item::before{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 8px var(--brand)}50%{box-shadow:0 0 16px var(--brand),0 0 26px rgba(255,51,68,.5)}}
+
+/* --- accessibility: respect reduced motion --- */
+@media (prefers-reduced-motion: reduce){
+  .cursor-glow,.hero::before{display:none}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.05ms!important}
 }

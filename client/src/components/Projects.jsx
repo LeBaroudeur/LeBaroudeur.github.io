@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Reveal from './Reveal.jsx';
 import PdfModal from './PdfModal.jsx';
 import { useLang } from '../i18n/LanguageContext.jsx';
+import { onCardMove, onCardLeave } from '../utils/cardFx.js';
 
 export default function Projects({ projects }) {
   const { t, pick } = useLang();
@@ -35,6 +36,8 @@ export default function Projects({ projects }) {
                   key={p.slug}
                   role="button"
                   tabIndex={0}
+                  onMouseMove={onCardMove}
+                  onMouseLeave={onCardLeave}
                   onClick={() => setReport({ url: p.report, title: p.title })}
                   onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setReport({ url: p.report, title: p.title })}
                 >
@@ -43,7 +46,8 @@ export default function Projects({ projects }) {
               );
             }
             return (
-              <a className="proj" key={p.slug} href={p.repo} target="_blank" rel="noopener noreferrer">
+              <a className="proj" key={p.slug} href={p.repo} target="_blank" rel="noopener noreferrer"
+                onMouseMove={onCardMove} onMouseLeave={onCardLeave}>
                 {inner}
               </a>
             );
