@@ -33,6 +33,7 @@ export const profile = {
   email: 'mehdi.msallem@telecom-paris.fr',
   github: 'https://github.com/LeBaroudeur',
   linkedin: 'https://www.linkedin.com/in/mehdi-msallem',
+  cv: '/cv/Mehdi-Msallem-CV.pdf',
   roles: {
     en: ['Cybersecurity Engineer', 'Offensive Security · Red Team', 'GRC — ISO 27001 · EBIOS RM', 'Security Automation · SOAR', 'Bug Bounty Hunter', 'Full-Stack Developer (MERN)'],
     fr: ['Ingénieur en Cybersécurité', 'Sécurité Offensive · Red Team', 'GRC — ISO 27001 · EBIOS RM', 'Automatisation Sécurité · SOAR', 'Chasseur de Bugs (Bug Bounty)', 'Développeur Full-Stack (MERN)'],

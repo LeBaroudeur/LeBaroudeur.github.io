@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLang } from '../i18n/LanguageContext.jsx';
+import PdfModal from './PdfModal.jsx';
 
 // Typewriter cycling through the role lines.
 function useTypewriter(words, speed = 70, pause = 1600) {
@@ -26,6 +27,12 @@ export default function Hero({ profile }) {
   const { t, pick } = useLang();
   const roles = pick(profile.roles);
   const typed = useTypewriter(roles);
+  const [cvOpen, setCvOpen] = useState(false);
+
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section className="hero">
@@ -42,7 +49,10 @@ export default function Hero({ profile }) {
           <p className="meta"><span className="prompt">$</span> {t.hero.availabilityCmd}</p>
           <p className="status">{pick(profile.availability)}</p>
           <div className="cta">
-            <a className="btn primary" href={`mailto:${profile.email}`}>{t.hero.getInTouch}</a>
+            <a className="btn primary" href="#contact" onClick={scrollToContact}>{t.hero.getInTouch}</a>
+            {profile.cv && (
+              <button className="btn" type="button" onClick={() => setCvOpen(true)}>{t.hero.cv}</button>
+            )}
             <a className="btn" href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
             <a className="btn" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
@@ -51,6 +61,10 @@ export default function Hero({ profile }) {
       <div className="certs">
         {profile.certifications.map((c) => <span className="chip" key={c}>{c}</span>)}
       </div>
+
+      {profile.cv && (
+        <PdfModal open={cvOpen} url={profile.cv} title={`CV — ${profile.name}`} label="" onClose={() => setCvOpen(false)} />
+      )}
     </section>
   );
 }

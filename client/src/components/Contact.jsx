@@ -54,6 +54,7 @@ export default function Contact({ profile, live }) {
 
         <div className="cta">
           <a className="btn primary" href={`mailto:${profile.email}`}>{profile.email}</a>
+          {profile.cv && <a className="btn" href={profile.cv} download>{t.hero.cv}</a>}
           <a className="btn" href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a className="btn" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>

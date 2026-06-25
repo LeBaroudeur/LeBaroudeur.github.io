@@ -3,7 +3,7 @@ import { useLang } from '../i18n/LanguageContext.jsx';
 
 // Fullscreen overlay that embeds a PDF report in an iframe, with download +
 // open-in-new-tab actions. Closes on backdrop click or Escape.
-export default function PdfModal({ open, url, title, onClose }) {
+export default function PdfModal({ open, url, title, label, onClose }) {
   const { lang } = useLang();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function PdfModal({ open, url, title, onClose }) {
     <div className="pdf-overlay" onMouseDown={onClose}>
       <div className="pdf-modal" onMouseDown={(e) => e.stopPropagation()}>
         <div className="pdf-bar">
-          <span className="pdf-title"><span className="prompt">$</span> {L.report} — {title}</span>
+          <span className="pdf-title"><span className="prompt">$</span> {(label ?? L.report) ? `${label ?? L.report} — ${title}` : title}</span>
           <div className="pdf-actions">
             <a className="btn" href={url} download>{L.download}</a>
             <a className="btn" href={url} target="_blank" rel="noopener noreferrer">{L.openTab}</a>

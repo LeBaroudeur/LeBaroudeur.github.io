@@ -6,7 +6,7 @@ export const UI = {
     headings: { about: 'about', skills: 'arsenal', projects: 'featured_projects', blog: 'reports', experience: 'experience', contact: 'contact' },
     projectAction: { report: 'Read report ▸', repo: 'View code ↗' },
     blog: { subtitle: 'Technical reports & write-ups — read in your browser or download the PDF.', read: 'Read', download: 'Download', pdf: 'PDF' },
-    hero: { getInTouch: 'Get in touch', availabilityCmd: './status --availability' },
+    hero: { getInTouch: 'Get in touch', cv: 'My CV', availabilityCmd: './status --availability' },
     contact: {
       lead: "Let's talk — I'm looking for a 6-month cybersecurity internship starting July 2026.",
       name: 'Your name', email: 'Your email', message: 'Your message',
@@ -26,7 +26,7 @@ export const UI = {
     headings: { about: 'à_propos', skills: 'arsenal', projects: 'projets', blog: 'rapports', experience: 'expérience', contact: 'contact' },
     projectAction: { report: 'Lire le rapport ▸', repo: 'Voir le code ↗' },
     blog: { subtitle: 'Rapports techniques & write-ups — à lire dans le navigateur ou à télécharger en PDF.', read: 'Lire', download: 'Télécharger', pdf: 'PDF' },
-    hero: { getInTouch: 'Me contacter', availabilityCmd: './statut --disponibilite' },
+    hero: { getInTouch: 'Me contacter', cv: 'Mon CV', availabilityCmd: './statut --disponibilite' },
     contact: {
       lead: 'Discutons — je recherche un stage de 6 mois en cybersécurité à partir de juillet 2026.',
       name: 'Votre nom', email: 'Votre email', message: 'Votre message',

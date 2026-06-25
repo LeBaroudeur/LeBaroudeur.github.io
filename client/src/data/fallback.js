@@ -33,6 +33,7 @@ export const profile = {
   email: 'mehdi.msallem@telecom-paris.fr',
   github: 'https://github.com/LeBaroudeur',
   linkedin: 'https://www.linkedin.com/in/mehdi-msallem',
+  cv: '/cv/Mehdi-Msallem-CV.pdf',
   roles: {
     en: [
       'Cybersecurity Engineer',
