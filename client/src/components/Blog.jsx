@@ -1,14 +1,11 @@
-import { useState } from 'react';
 import Reveal from './Reveal.jsx';
-import PdfModal from './PdfModal.jsx';
 import { useLang } from '../i18n/LanguageContext.jsx';
 import { onCardMove, onCardLeave } from '../utils/cardFx.js';
 
-// "Blog" of technical reports: every project carrying a PDF `report` becomes a
-// readable + downloadable entry.
+// "Blog" of technical reports: every project carrying a PDF `report` becomes an
+// entry that opens a themed in-site reader page (and is downloadable).
 export default function Blog({ projects }) {
   const { t, pick } = useLang();
-  const [open, setOpen] = useState(null); // { url, title } or null
 
   const posts = projects.filter((p) => p.report);
   if (!posts.length) return null;
@@ -35,17 +32,13 @@ export default function Blog({ projects }) {
                 </div>
               </div>
               <div className="post-actions">
-                <button className="btn primary" onClick={() => setOpen({ url: p.report, title: p.title })}>
-                  {t.blog.read} ▸
-                </button>
+                <a className="btn primary" href={`#/report/${p.slug}`}>{t.blog.read} ›</a>
                 <a className="btn" href={p.report} download>{t.blog.download}</a>
               </div>
             </article>
           ))}
         </div>
       </section>
-
-      <PdfModal open={!!open} url={open?.url} title={open?.title} onClose={() => setOpen(null)} />
     </Reveal>
   );
 }

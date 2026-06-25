@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import Reveal from './Reveal.jsx';
-import PdfModal from './PdfModal.jsx';
 import { useLang } from '../i18n/LanguageContext.jsx';
 import { onCardMove, onCardLeave } from '../utils/cardFx.js';
 
 export default function Projects({ projects }) {
   const { t, pick } = useLang();
-  const [report, setReport] = useState(null); // { url, title } or null
 
   return (
     <Reveal>
@@ -28,39 +25,26 @@ export default function Projects({ projects }) {
               </>
             );
 
-            // Link to the repo when available; otherwise open the PDF reader.
-            if (p.report && !p.repo) {
-              return (
-                <div
-                  className="proj"
-                  key={p.slug}
-                  role="button"
-                  tabIndex={0}
-                  onMouseMove={onCardMove}
-                  onMouseLeave={onCardLeave}
-                  onClick={() => setReport({ url: p.report, title: p.title })}
-                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setReport({ url: p.report, title: p.title })}
-                >
-                  {inner}
-                </div>
-              );
-            }
+            // Repo projects link out; report-only projects open the in-site reader page.
+            const href = p.repo || `#/report/${p.slug}`;
+            const external = Boolean(p.repo);
+
             return (
-              <a className="proj" key={p.slug} href={p.repo} target="_blank" rel="noopener noreferrer"
-                onMouseMove={onCardMove} onMouseLeave={onCardLeave}>
+              <a
+                className="proj"
+                key={p.slug}
+                href={href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+                onMouseMove={onCardMove}
+                onMouseLeave={onCardLeave}
+              >
                 {inner}
               </a>
             );
           })}
         </div>
       </section>
-
-      <PdfModal
-        open={!!report}
-        url={report?.url}
-        title={report?.title}
-        onClose={() => setReport(null)}
-      />
     </Reveal>
   );
 }

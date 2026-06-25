@@ -6,6 +6,7 @@ export const UI = {
     headings: { about: 'about', skills: 'arsenal', projects: 'featured_projects', blog: 'reports', experience: 'experience', contact: 'contact' },
     projectAction: { report: 'Read report ▸', repo: 'View code ↗' },
     blog: { subtitle: 'Technical reports & write-ups — read in your browser or download the PDF.', read: 'Read', download: 'Download', pdf: 'PDF' },
+    report: { back: 'Back to portfolio', download: 'Download PDF', original: 'Open original PDF', stack: 'Stack', notFound: 'Report not found.' },
     hero: { getInTouch: 'Get in touch', cv: 'My CV', availabilityCmd: './status --availability' },
     contact: {
       lead: "Let's talk — I'm looking for a 6-month cybersecurity internship starting July 2026.",
@@ -26,6 +27,7 @@ export const UI = {
     headings: { about: 'à_propos', skills: 'arsenal', projects: 'projets', blog: 'rapports', experience: 'expérience', contact: 'contact' },
     projectAction: { report: 'Lire le rapport ▸', repo: 'Voir le code ↗' },
     blog: { subtitle: 'Rapports techniques & write-ups — à lire dans le navigateur ou à télécharger en PDF.', read: 'Lire', download: 'Télécharger', pdf: 'PDF' },
+    report: { back: 'Retour au portfolio', download: 'Télécharger le PDF', original: 'Ouvrir le PDF original', stack: 'Stack', notFound: 'Rapport introuvable.' },
     hero: { getInTouch: 'Me contacter', cv: 'Mon CV', availabilityCmd: './statut --disponibilite' },
     contact: {
       lead: 'Discutons — je recherche un stage de 6 mois en cybersécurité à partir de juillet 2026.',

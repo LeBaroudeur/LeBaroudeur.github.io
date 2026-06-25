@@ -175,8 +175,14 @@ export const experience = [
     role: { en: 'Cybersecurity & Automation Engineer (PFE)', fr: 'Ingénieur Cybersécurité & Automatisation (PFE)' },
     org: 'AMEN Bank',
     points: {
-      en: ['ISO 27001 governance · SOAR/SIEM (Wazuh, TheHive).', '-40% incident response time, +35% detection accuracy.'],
-      fr: ['Gouvernance ISO 27001 · SOAR/SIEM (Wazuh, TheHive).', '-40% de temps de réponse aux incidents, +35% de précision de détection.'],
+      en: [
+        'ISO 27001 governance · SOAR/SIEM automation (Wazuh, TheHive).',
+        'Designed a predictive cyber threat intelligence solution that cut incident response time by 40% and raised detection accuracy by 35%.',
+      ],
+      fr: [
+        'Gouvernance ISO 27001 · automatisation SOAR/SIEM (Wazuh, TheHive).',
+        'Conception d’une solution de threat intelligence prédictive ayant réduit le temps de réponse aux incidents de 40% et amélioré la précision de détection de 35%.',
+      ],
     },
     award: { en: 'Outstanding with honors (highest distinction from the jury)', fr: 'Mention Très Bien avec félicitations du jury' },
   },
