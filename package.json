@@ -9,7 +9,8 @@
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
     "dev": "concurrently -n server,client -c green,cyan \"npm:dev:server\" \"npm:dev:client\"",
-    "build": "npm --prefix client run build"
+    "build": "npm --prefix client run build",
+    "deploy": "powershell -ExecutionPolicy Bypass -File ./deploy.ps1"
   },
   "devDependencies": {
     "concurrently": "^9.0.0"
